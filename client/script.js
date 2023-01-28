@@ -28,6 +28,7 @@ function typeText(element, text) {
   }, 20)
 }
 
+// generates a unique id
 function generateUniqueId() {
   const timestamp = Date.now()
   const randomNumber = Math.random()
