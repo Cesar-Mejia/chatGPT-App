@@ -3,6 +3,7 @@ const chatContainer = document.getElementById('chat_container')
 
 let loadInterval
 
+// function to run loading animation
 function loader(element) {
   element.textContent = ''
 
