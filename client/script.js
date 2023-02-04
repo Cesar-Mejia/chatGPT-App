@@ -1,9 +1,11 @@
+import { v4 as generateUniqueId } from "https://jspm.dev/uuid"
+
 const form = document.querySelector('form')
 const chatContainer = document.getElementById('chat_container')
 
 let loadInterval
 
-// function to run loading animation
+// runs loading animation
 function loader(element) {
   element.textContent = ''
 
@@ -16,6 +18,7 @@ function loader(element) {
   }, 300)
 }
 
+// prints text one letter at a time
 function typeText(element, text) {
   let index = 0
 
@@ -29,16 +32,7 @@ function typeText(element, text) {
   }, 20)
 }
 
-// generates a unique id
-function generateUniqueId() {
-  const timestamp = Date.now()
-  const randomNumber = Math.random()
-  const hexaDecimalString = randomNumber.toString(16)
-
-  return `id-${timestamp}-${hexaDecimalString}`
-}
-
-function chatStripe(isAi, value, uniqueId) {
+function chatBox(isAi, value, uniqueId) {
   return `
       <div class="wrapper ${isAi && 'ai'}">
         <div class="chat">
@@ -55,15 +49,16 @@ function chatStripe(isAi, value, uniqueId) {
 }
 
 async function handleSubmit(e) {
+  console.log(e)
   e.preventDefault()
   const data = new FormData(form)
 
-  // user's chat stripe
-  chatContainer.innerHTML += chatStripe(false, data.get('prompt'))
+  // user's chat box
+  chatContainer.innerHTML += chatBox(false, data.get('prompt'))
 
-  // bot's chat stripe
+  // bot's chat box
   const uniqueId = generateUniqueId()
-  chatContainer.innerHTML += chatStripe(true, ' ', uniqueId)
+  chatContainer.innerHTML += chatBox(true, ' ', uniqueId)
 
   chatContainer.scrollTop = chatContainer.scrollHeight
 
