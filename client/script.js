@@ -1,5 +1,6 @@
 import { v4 as generateUniqueId } from "https://jspm.dev/uuid"
 
+// form and chat container elements init
 const form = document.querySelector('form')
 const chatContainer = document.getElementById('chat_container')
 
